@@ -1,0 +1,397 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Segoe UI', sans-serif;
+  color: #eef2ff;
+  background: #05070f;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.app-root {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem min(6vw, 4rem);
+  gap: 1.75rem;
+}
+
+.app-root::before {
+  content: '';
+  position: fixed;
+  inset: -20vmax;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(16, 185, 129, 0.28), transparent 45%),
+    radial-gradient(circle at 74% 18%, rgba(236, 72, 153, 0.22), transparent 48%),
+    radial-gradient(circle at 62% 76%, rgba(99, 102, 241, 0.28), transparent 52%),
+    radial-gradient(circle at 22% 78%, rgba(56, 189, 248, 0.18), transparent 52%),
+    radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.75), rgba(2, 6, 23, 0.95));
+  filter: blur(0px);
+  z-index: -2;
+}
+
+.app-root::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  opacity: 0.08;
+  z-index: -1;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(2, 6, 23, 0.55);
+  backdrop-filter: blur(18px);
+}
+
+.nav-link {
+  font-size: 0.9rem;
+  color: rgba(226, 232, 240, 0.78);
+  text-decoration: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.nav-link:hover {
+  background: rgba(148, 163, 184, 0.12);
+  color: #eef2ff;
+}
+
+.nav-link.active {
+  color: #0b1020;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 1), rgba(99, 102, 241, 1));
+}
+
+.header-wallet {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 140px;
+}
+
+.wallet-chip {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(2, 6, 23, 0.55);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(56, 189, 248, 1));
+  color: rgba(2, 6, 23, 0.95);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-weight: 650;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+.brand-subtitle {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  border-radius: 1.4rem;
+  padding: 1.35rem 1.4rem 1.2rem;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.72), rgba(2, 6, 23, 0.42));
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(20px);
+  overflow: hidden;
+  transform: translateZ(0);
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle at 20% 10%, rgba(56, 189, 248, 0.22), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.18), transparent 45%),
+    radial-gradient(circle at 25% 90%, rgba(16, 185, 129, 0.16), transparent 45%);
+  opacity: 0.65;
+  z-index: 0;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(148, 163, 184, 0.26);
+  box-shadow: 0 26px 72px rgba(0, 0, 0, 0.55);
+}
+
+.card-header {
+  margin-bottom: 0.9rem;
+}
+
+.card-title {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.card-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: rgba(226, 232, 240, 0.72);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 0.8rem;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+}
+
+.wallet-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.wallet-label {
+  color: rgba(226, 232, 240, 0.66);
+}
+
+.wallet-value {
+  font-family: ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  font-size: 0.85rem;
+}
+
+.btn-primary,
+.btn-secondary {
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  padding: 0.6rem 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition:
+    transform 0.12s ease-out,
+    box-shadow 0.12s ease-out,
+    background-color 0.12s ease-out,
+    color 0.12s ease-out;
+}
+
+.btn-primary {
+  background-image: linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(56, 189, 248, 1));
+  color: rgba(2, 6, 23, 0.95);
+  box-shadow:
+    0 14px 34px rgba(16, 185, 129, 0.22),
+    0 10px 26px rgba(56, 189, 248, 0.18),
+    0 0 0 1px rgba(2, 6, 23, 0.6);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow:
+    0 20px 44px rgba(56, 189, 248, 0.26),
+    0 0 0 1px rgba(2, 6, 23, 0.65);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.85),
+    0 0 0 1px rgba(15, 23, 42, 0.95);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.btn-secondary {
+  background: rgba(2, 6, 23, 0.35);
+  color: rgba(238, 242, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  backdrop-filter: blur(18px);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.muted {
+  color: rgba(226, 232, 240, 0.66);
+  font-size: 0.9rem;
+}
+
+.error-text {
+  color: #f97373;
+  font-size: 0.88rem;
+}
+
+.preview-result {
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.preview-value {
+  font-size: 0.9rem;
+  font-family: ui-monospace, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+  word-break: break-word;
+}
+
+.verify-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.verify-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.9rem;
+  color: rgba(238, 242, 255, 0.92);
+}
+
+.verify-input {
+  padding: 0.6rem 0.75rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(2, 6, 23, 0.55);
+  color: rgba(238, 242, 255, 0.92);
+  font-size: 0.9rem;
+}
+
+.verify-input:focus {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.9);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.5),
+    0 0 0 4px rgba(56, 189, 248, 0.12);
+}
+
+.verify-status {
+  margin-top: 0.75rem;
+}
+
+.app-footer {
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: rgba(226, 232, 240, 0.45);
+}
+
+@media (max-width: 640px) {
+  .app-root {
+    padding: 1.5rem 1.25rem 1.75rem;
+  }
+
+  .card {
+    padding: 1.2rem 1.2rem 1rem;
+  }
+
+  .nav {
+    gap: 0.2rem;
+    padding: 0.25rem;
+  }
+
+  .nav-link {
+    padding: 0.45rem 0.65rem;
+  }
+}
+
