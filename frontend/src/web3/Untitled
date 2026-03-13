@@ -1,0 +1,39 @@
+import { createConfig, http } from 'wagmi'
+import { QueryClient } from '@tanstack/react-query'
+import { polygonAmoy } from 'wagmi/chains' // 1. Changed to Amoy
+import { injected } from 'wagmi/connectors'
+
+export const supportedChains = [polygonAmoy]
+
+export const wagmiConfig = createConfig({
+  chains: supportedChains,
+  connectors: [injected()],
+  transports: {
+    // 2. Updated to Amoy RPC
+    [polygonAmoy.id]: http("https://rpc-amoy.polygon.technology"),
+  },
+})
+
+export const queryClient = new QueryClient()
+
+export const credAstraContract = {
+  chainId: polygonAmoy.id,
+
+  // 3. TODO: PASTE YOUR REMIX ADDRESS HERE
+  address: '0x0000000000000000000000000000000000000000', 
+
+  // 4. TODO: PASTE YOUR REMIX ABI HERE (The big array)
+  abi: [],
+
+  previewRead: {
+    functionName: 'balanceOf', // Standard ERC721 function to show how many skills owned
+    args: (address) => [address],
+  },
+
+  // 5. This enables the Verify page to call your mint function
+  verify: {
+    functionName: 'mintSkill', 
+    // args will take the input address and a generic URI for the badge
+    args: (addressToVerify) => [addressToVerify, "https://gateway.pinata.cloud/ipfs/QmVerifiedSkill"],
+  },
+}
