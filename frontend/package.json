@@ -32,6 +32,9 @@
   },
   "homepage": "https://ThomasDeepan.github.io/CredAstra",
   "scripts": {
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
   "predeploy": "npm run build",
   "deploy": "gh-pages -d dist"
 }
