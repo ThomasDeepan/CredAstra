@@ -32,7 +32,7 @@ function AppLayout() {
           <nav className="nav">
             <NavLink to="/" end className="nav-link">Home</NavLink>
             <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
-            <NavLink to="/verify" className="nav-link">Search & Issue Skill</NavLink>
+            <NavLink to="/verify" className="nav-link">Verify</NavLink>
           </nav>
   
           <div className="header-wallet">
@@ -85,6 +85,7 @@ function AppLayout() {
       </main>
       {/* ... footer */}
     </div>
-  );}
+  );
+}
 
-export default AppLayout
+export default AppLayout;
